@@ -1,9 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="helloBean" class="com.Spring.Test.HelloWorld">
-        <property name="name" value="huaizuo" />
+    <bean id="personBean" class="com.Spring.Test.bean.Collection.Person" p:name="personBeanShiyanlou"/>
+
+    <bean id="customerBean" class="com.Spring.Test.bean.Collection.Customer">
+        <property name="lists">
+            <list>
+                <value>1</value>
+                <ref bean="personBean"></ref>
+                <bean class="com.Spring.Test.bean.Collection.Person" p:name="shiyanlouList"/>
+            </list>
+        </property>
+
+        <property name="sets">
+            <set>
+                <value>1</value>
+                <ref bean="personBean"></ref>
+                <bean class="com.Spring.Test.bean.Collection.Person" p:name="shiyanlouSet"/>
+            </set>
+        </property>
+
+        <property name="maps">
+            <map>
+                <entry key="1" value="1"></entry>
+                <entry key="1" value-ref="personBean"></entry>
+                <entry key="1">
+                    <bean class="com.Spring.Test.bean.Collection.Person" p:name="shiyanlouMap"/>
+                </entry>
+            </map>
+        </property>
+
+        <property name="props">
+            <props>
+                <prop key="1">adminprops1</prop>
+                <prop key="1">adminprops2</prop>
+            </props>
+        </property>
     </bean>
+
+
+
+
+   <!-- <bean id="helloBean" class="com.Spring.Test.HelloWorld">
+        <property name="name" value="huaizuo" />
+    </bean>-->
+
+    <!--<bean id="OutPutHelper" class="com.Spring.Test.OutPutHelper">
+        <property name="outPutGenerator" ref="JsonOutPutGenerator"></property>
+    </bean>
+
+    <bean id="CsvOutPutGenerator" class="com.Spring.Test.CsvOutPutGenerator"></bean>
+    <bean id="JsonOutPutGenerator" class="com.Spring.Test.JsonOutPutGenerator"></bean>-->
+
+    <!--<bean id="FileNameGenerator" class="com.Spring.Test.bean.OutPutGenerator.FileNameGenerator">
+        <property name="name" value="shiyanlou"></property>
+        <property name="type" value="txt"></property>
+    </bean>-->
+
+    <!-- 配置属性 p:属性名 xmlns:p="http://www.springframework.org/schema/p-->
+    <!--<bean id="FileNameGenerator"
+          class="com.Spring.Test.bean.OutPutGenerator.FileNameGenerator"
+          p:name="shiyanlou" p:type="txt"></bean>-->
 </beans>

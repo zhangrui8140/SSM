@@ -1,4 +1,4 @@
-package com.Spring.Test;
+package com.Spring.Test.bean.HelloWorld;
 
 public class HelloWorld {
     private String name;
