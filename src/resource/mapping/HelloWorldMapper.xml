@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="business.dao.HelloWorldMapper">
+    <resultMap id="BaseResultMap" type="business.table.HelloWorldTable">
+        <result column="AUTHCD" property="authcd" jdbcType="VARCHAR" />
+        <result column="AUTHNAME" property="authname" jdbcType="VARCHAR" />
+        <result column="AUTHDESC" property="authdesc" jdbcType="VARCHAR" />
+        <result column="AUTHTYPCD" property="authtypcd" jdbcType="VARCHAR" />
+        <result column="AUTHSTATCD" property="authstatcd" jdbcType="VARCHAR" />
+        <result column="DATELASTMAINT" property="datelastmaint" jdbcType="INTEGER" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        AUTHCD, AUTHDESC, AUTHNAME, AUTHSTATCD, DATELASTMAINT, AUTHTYPCD
+    </sql>
+
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="String">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        FROM PTL_AUTH
+        WHERE AUTHCD = #{authcd}
+    </select>
+</mapper>
