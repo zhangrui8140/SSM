@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
+
+
+    <context:component-scan base-package="core.config" />
+
+    <!-- 启动缓存注解功能，否则缓解不会生效 -->
+    <cache:annotation-driven cache-manager="cacheManager"/>
+
+    <!-- redis属性配置 -->
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxTotal" value="${redis.pool.maxTotal}" />
+        <property name="maxIdle" value="${redis.pool.maxIdle}" />
+        <property name="numTestsPerEvictionRun" value="${redis.pool.numTestsPerEvictionRun}" />
+        <property name="timeBetweenEvictionRunsMillis" value="${redis.pool.timeBetweenEvictionRunsMillis}" />
+        <property name="minEvictableIdleTimeMillis" value="${redis.pool.minEvictableIdleTimeMillis}" />
+        <property name="softMinEvictableIdleTimeMillis" value="${redis.pool.softMinEvictableIdleTimeMillis}" />
+        <property name="maxWaitMillis" value="${redis.pool.maxWaitMillis}" />
+        <property name="testOnBorrow" value="${redis.pool.testOnBorrow}" />
+    </bean>
+
+    <!-- redis集群配置 哨兵模式 -->
+    <bean id="sentinelConfiguration" class="org.springframework.data.redis.connection.RedisSentinelConfiguration">
+        <property name="master">
+            <bean class="org.springframework.data.redis.connection.RedisNode">
+                <!--这个值要和Sentinel中指定的master的值一致，不然启动时找不到Sentinel会报错的-->
+                <property name="name" value="mymaster"></property>
+            </bean>
+        </property>
+        <!--记住了,这里是指定Sentinel的IP和端口，不是Master和Slave的-->
+        <property name="sentinels">
+            <set>
+                <bean class="org.springframework.data.redis.connection.RedisNode">
+                    <constructor-arg name="host" value="${redis.sentinel.host1}"></constructor-arg>
+                    <constructor-arg name="port" value="${redis.sentinel.port1}"></constructor-arg>
+                </bean>
+                <bean class="org.springframework.data.redis.connection.RedisNode">
+                    <constructor-arg name="host" value="${redis.sentinel.host2}"></constructor-arg>
+                    <constructor-arg name="port" value="${redis.sentinel.port2}"></constructor-arg>
+                </bean>
+            </set>
+        </property>
+    </bean>
+    <!-- redis连接中指定哨兵 -->
+    <bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+       <!-- <constructor-arg name="sentinelConfig" ref="sentinelConfiguration"/>-->
+        <constructor-arg name="poolConfig" ref="jedisPoolConfig"/>
+       <!-- <property name="database" value="1"></property>-->
+        <property name="hostName" value="${redis.host}"></property>
+        <property name="port" value="${redis.port}"></property>
+       <!-- <property name="password" value="123456"></property>-->
+    </bean>
+
+    <bean id="redisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">
+        <property name="connectionFactory" ref="connectionFactory"></property>
+    </bean>
+
+
+
+    <!-- 缓存管理器 -->
+    <bean id="cacheManager" class="org.springframework.data.redis.cache.RedisCacheManager">
+        <constructor-arg ref="redisTemplate" />
+    </bean>
+</beans>
