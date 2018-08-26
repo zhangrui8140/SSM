@@ -1,5 +1,6 @@
 package core.config;
 
+import business.bean.HelloWorldBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.DataAccessException;
@@ -8,59 +9,41 @@ import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 
+import javax.annotation.Resource;
 import java.io.Serializable;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 @Configuration
-public class RedisUtil {
+public class RedisUtil<T>{
+
     @Autowired
-    private StringRedisTemplate redisTemplate;
+    private RedisTemplate<String, String> template;
 
-    /**
-     * 读取缓存
-     *
-     * @param key
-     * @return
-     */
-    public Object get(final String key) {
-        Object result = null;
-        ValueOperations<String, String> operations = redisTemplate.opsForValue();
-        result = operations.get(key);
-        return result;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //region Pub/Sub
+    public void SendMsgToTopic(String topic,Object msg){
+        template.convertAndSend(topic,msg);
     }
-
-    /**
-     *
-     * @param key
-     * @param i 自增值
-     * @return
-     */
-    public Object incr(final String key,long i) {
-        Object result = null;
-        ValueOperations<String, String> operations = redisTemplate.opsForValue();
-        operations.increment(key,i);
-        result = operations.get(key);
-        return result;
-    }
-
-    /**
-     * 写入缓存
-     *
-     * @param key
-     * @param value
-     * @return
-     */
-    public boolean set(final String key, String value) {
-        boolean result = false;
-        try {
-            ValueOperations<String, String> operations = redisTemplate.opsForValue();
-            operations.set(key, value);
-            result = true;
-        } catch (Exception e) {
-             System.out.println(e.getMessage());
-        }
-        return result;
-    }
-
+    //endregion
 
 }

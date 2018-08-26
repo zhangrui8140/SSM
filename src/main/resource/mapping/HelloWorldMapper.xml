@@ -2,23 +2,68 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="business.dao.HelloWorldMapper">
     <resultMap id="BaseResultMap" type="business.table.HelloWorldTable">
-        <result column="AUTHCD" property="authcd" jdbcType="VARCHAR" />
-        <result column="AUTHNAME" property="authname" jdbcType="VARCHAR" />
-        <result column="AUTHDESC" property="authdesc" jdbcType="VARCHAR" />
-        <result column="AUTHTYPCD" property="authtypcd" jdbcType="VARCHAR" />
-        <result column="AUTHSTATCD" property="authstatcd" jdbcType="VARCHAR" />
-        <result column="DATELASTMAINT" property="datelastmaint" jdbcType="INTEGER" />
+        <result column="LGRPCD"  jdbcType="VARCHAR" property="lgrpcd" />
+        <result column="CUSTNO"  jdbcType="VARCHAR" property="custno" />
+        <result column="CARDNO"  jdbcType="VARCHAR" property="cardno" />
+        <result column="CDTPNO"  jdbcType="VARCHAR" property="cdtpno" />
+        <result column="SVMFBK"  jdbcType="VARCHAR" property="svmfbk" />
+        <result column="RGMFBK"  jdbcType="VARCHAR" property="rgmfbk" />
+        <result column="YWZBZZ"  jdbcType="VARCHAR" property="ywzbzz" />
+        <result column="CARDPT"  jdbcType="VARCHAR" property="cardpt" />
+        <result column="CARDKN"  jdbcType="VARCHAR" property="cardkn" />
+        <result column="CDMDTP"  jdbcType="VARCHAR" property="cdmdtp" />
+        <result column="CARDOJ"  jdbcType="VARCHAR" property="cardoj" />
+        <result column="ACOUNT"  jdbcType="VARCHAR" property="acount" />
+        <result column="PYINNM"  jdbcType="VARCHAR" property="pyinnm" />
+        <result column="PERSNM"  jdbcType="VARCHAR" property="persnm" />
+        <result column="CARDLV"  jdbcType="VARCHAR" property="cardlv" />
+        <result column="CARDTP"  jdbcType="VARCHAR" property="cardtp" />
+        <result column="MCRDAC"  jdbcType="VARCHAR" property="mcrdac" />
+        <result column="BZBRCH"  jdbcType="VARCHAR" property="bzbrch" />
+        <result column="AAPLDT"  jdbcType="VARCHAR" property="aapldt" />
+        <result column="MCCECD"  jdbcType="VARCHAR" property="mccecd" />
+        <result column="ISSUER"  jdbcType="VARCHAR" property="issuer" />
+        <result column="ISTLCD"  jdbcType="VARCHAR" property="istlcd" />
+        <result column="ORICDT"  jdbcType="VARCHAR" property="oricdt" />
+        <result column="ISDATE"  jdbcType="VARCHAR" property="isdate" />
+        <result column="ISMODE"  jdbcType="VARCHAR" property="ismode" />
+        <result column="CAVTLE"  jdbcType="VARCHAR" property="cavtle" />
+        <result column="CAVDAT"  jdbcType="VARCHAR" property="cavdat" />
+        <result column="CAVBRH"  jdbcType="VARCHAR" property="cavbrh" />
+        <result column="NOPWFG"  jdbcType="VARCHAR" property="nopwfg" />
+        <result column="VALDDT"  jdbcType="VARCHAR" property="valddt" />
+        <result column="SGVCST"  jdbcType="VARCHAR" property="sgvcst" />
+        <result column="NCPLFG"  jdbcType="VARCHAR" property="ncplfg" />
+        <result column="ISCHNL"  jdbcType="VARCHAR" property="ischnl" />
+        <result column="CDCTAC"  jdbcType="VARCHAR" property="cdctac" />
+        <result column="OSACBR"  jdbcType="VARCHAR" property="osacbr" />
+        <result column="CCVVFG"  jdbcType="VARCHAR" property="ccvvfg" />
+        <result column="YNFCCT"  jdbcType="VARCHAR" property="ynfcct" />
+        <result column="PRCLDT"  jdbcType="VARCHAR" property="prcldt" />
+        <result column="YONVIP"  jdbcType="VARCHAR" property="yonvip" />
+        <result column="EMCDID"  jdbcType="VARCHAR" property="emcdid" />
+        <result column="ATRNFG"  jdbcType="VARCHAR" property="atrnfg" />
+        <result column="ACCDFG"  jdbcType="VARCHAR" property="accdfg" />
+        <result column="GCASFG"  jdbcType="VARCHAR" property="gcasfg" />
+        <result column="ITNCFG"  jdbcType="VARCHAR" property="itncfg" />
+        <result column="AIN1FG"  jdbcType="VARCHAR" property="ain1fg" />
+        <result column="NOCFG1"  jdbcType="VARCHAR" property="nocfg1" />
+        <result column="SSBKFG"  jdbcType="VARCHAR" property="ssbkfg" />
+        <result column="WGCDFG"  jdbcType="VARCHAR" property="wgcdfg" />
+        <result column="SMRYCD"  jdbcType="VARCHAR" property="smrycd" />
+        <result column="SMRYIF"  jdbcType="VARCHAR" property="smryif" />
+        <result column="MTTLER"  jdbcType="VARCHAR" property="mttler" />
+        <result column="MTBRAH"  jdbcType="VARCHAR" property="mtbrah" />
+        <result column="MTDATE"  jdbcType="VARCHAR" property="mtdate" />
+        <result column="MTTIME"  jdbcType="DECIMAL" property="mttime" />
+        <result column="TMSTAM"  jdbcType="DECIMAL" property="tmstam" />
+        <result column="RECDST"  jdbcType="VARCHAR" property="recdst" />
     </resultMap>
 
-    <sql id="Base_Column_List">
-        AUTHCD, AUTHDESC, AUTHNAME, AUTHSTATCD, DATELASTMAINT, AUTHTYPCD
-    </sql>
-
-
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="String">
-        SELECT
-        <include refid="Base_Column_List"></include>
-        FROM PTL_AUTH
-        WHERE AUTHCD = #{authcd}
-    </select>
+    <insert id="insert" parameterType="business.table.HelloWorldTable">
+        <!-- @mbggenerated -->
+        insert into ZKPZXXB
+        (LGRPCD,ISCHNL)
+        values (#{lgrpcd},#{ischnl})
+    </insert>
 </mapper>

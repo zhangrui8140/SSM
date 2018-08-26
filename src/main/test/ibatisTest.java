@@ -2,7 +2,6 @@ import business.dao.HelloWorldMapper;
 import business.table.HelloWorldTable;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ibm.db2.jcc.am.SqlDataException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,19 +14,19 @@ import java.sql.SQLException;
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(locations = {"classpath:applicationContext.xml"})
-public class MybatisTest {
-   /* @Autowired
-    private HelloWorldMapper helloWorldMapper;
+public class ibatisTest {
+    @Autowired
+    private HelloWorldMapper DaoImp;
     @Test
-    public void main() throws JsonProcessingException {
+    public void main() {
         HelloWorldTable test=new HelloWorldTable();
         test.setLgrpcd("9999");
         test.setIschnl("123456789");
         try {
-            helloWorldMapper.insert(test);
+            DaoImp.insert(test);
         }
         catch (SQLException e){
             System.out.println(e.getMessage());
         }
-    }*/
+    }
 }

@@ -21,8 +21,8 @@ public class HelloWorldRepository {
 
         HelloWorldBean helloWorldBean=new HelloWorldBean(1,"zhangrui");
         try {
-            HelloWorldTable auth=helloWorldDao.selectByPrimaryKey("1");
-            return new HelloWorldBean(1,new ObjectMapper().writeValueAsString(auth));
+            /*HelloWorldTable auth=helloWorldDao.selectByPrimaryKey("1");
+            return new HelloWorldBean(1,new ObjectMapper().writeValueAsString(auth));*/
         }
         catch(Exception e){
             helloWorldBean.setName("Error");

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap>
+    <typeAlias type="business.table.HelloWorldTable" alias="HelloWorldTable"/>
+    <resultMap id="BaseResultMap" class="HelloWorldTable">
+        <result column="LGRPCD"  jdbcType="VARCHAR" property="lgrpcd"  />
+        <result column="ISCHNL"  jdbcType="VARCHAR" property="ischnl" />
+    </resultMap>
+
+    <insert id="insert" parameterClass="HelloWorldTable" >
+        <!-- @mbggenerated -->
+        insert into ZKPZXXB
+        (LGRPCD,ISCHNL)
+        values (#lgrpcd:VARCHAR(4)#,#ischnl:VARCHAR(3)#)
+    </insert>
+</sqlMap>

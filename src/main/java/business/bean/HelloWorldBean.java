@@ -1,6 +1,10 @@
 package business.bean;
 
-public class HelloWorldBean {
+import java.io.Serializable;
+
+public class HelloWorldBean implements Serializable {
+
+    public HelloWorldBean(){}
 
     private  int id;
     private  String name;

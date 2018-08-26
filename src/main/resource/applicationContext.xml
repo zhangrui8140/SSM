@@ -11,12 +11,13 @@
         <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
                 <property name="locations">
                         <list>
-                                <value>classpath:property/jdbc.properties</value>
-                                <value>classpath:property/redis.properties</value>
+                               <value>classpath:property/jdbc.properties</value>
+                                <!--<value>classpath:property/redis.properties</value>-->
                         </list>
                 </property>
         </bean>
 
+        <import resource="classpath:spring-ibatis.xml" />
        <!-- <import resource="classpath:spring-mybatis.xml" />-->
-        <import resource="classpath:spring-redis.xml" />
+        <!--<import resource="classpath:spring-redis.xml" />-->
 </beans>

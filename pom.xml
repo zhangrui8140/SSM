@@ -109,6 +109,13 @@
     <!--MyBatis End-->
 
 
+    <!--ibatis-->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-ibatis</artifactId>
+      <version>2.0.8</version>
+    </dependency>
+
     <!-- DataBase Start-->
     <!-- 导入oracle包 -->
     <dependency>

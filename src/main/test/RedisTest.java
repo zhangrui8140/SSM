@@ -1,34 +1,61 @@
-import business.dao.HelloWorldMapper;
-import business.table.HelloWorldTable;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import business.bean.HelloWorldBean;
 import core.config.RedisUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.Cache;
+import org.springframework.data.redis.cache.DefaultRedisCachePrefix;
+import org.springframework.data.redis.cache.RedisCache;
+import org.springframework.data.redis.cache.RedisCacheManager;
+import org.springframework.data.redis.cache.RedisCachePrefix;
+import org.springframework.data.redis.listener.ChannelTopic;
+import org.springframework.data.redis.listener.RedisMessageListenerContainer;
+import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.Arrays;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:applicationContext.xml"})
 public class RedisTest {
 
+   /* @Autowired
+    private RedisUtil<HelloWorldBean> redisUtil;
+
     @Autowired
-    private RedisUtil redisUtil;
+    private RedisMessageListenerContainer listenerContainer;
+
+    @Autowired
+    private MessageListenerAdapter listenerAdapter;
 
     private int index=60;
+
+    @Autowired
+    private RedisCacheManager redisCacheManager;
+
+    @Test
+    public void test(){}
+
+
+
+    @Test
+    public void testRedisCache(){
+        Cache time=redisCacheManager.getCache("time");
+        Cache passwd=redisCacheManager.getCache("password");
+        if(time!=null){
+            time.put("loginTime","20180714");
+            time.put("searchTime","20180720");
+            passwd.put("zhangrui","123");
+            passwd.put("xin","456");
+        }
+        System.out.println(redisCacheManager.getCache("time").get("loginTime"));
+    }
 
     @Test
     public void main() throws InterruptedException {
 
-        ExecutorService cachedThreadPool= Executors.newCachedThreadPool();
-        System.out.println(redisUtil.get("num"));
+       *//* ExecutorService cachedThreadPool= Executors.newCachedThreadPool();
         //synchronized (this) {
             for (int i = 0; i < 100; i++) {
                 //TimeUnit.SECONDS.sleep(10L);
@@ -51,11 +78,38 @@ public class RedisTest {
                 }
             }
        // }
-        TimeUnit.SECONDS.sleep(20L);
+        TimeUnit.SECONDS.sleep(20L);*//*
     }
 
     @Test
-    public void redisSlaveTest(){
-        System.out.println(redisUtil.get("name"));
+    public void redisValueOpsTest(){
+        try{
+
+          *//*  HelloWorldBean user =new HelloWorldBean(1,"zhangrui");
+            redisUtil.setValueOps("test2",user);
+            HelloWorldBean userGet=redisUtil.getValueOps("test2");
+            System.out.println(userGet.getName());*//*
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+        }
+
+        System.out.println("end");
     }
+
+    @Test
+    public void redisPubSub() throws InterruptedException {
+        try {
+          *//*  listenerContainer.addMessageListener(listenerAdapter,new ChannelTopic("Theme.Math"));
+            for(int i=0;i<10;i++){
+                redisUtil.SendMsgToTopic("Theme.Math",new byte[]{1,2,3});
+                Thread.sleep(1000);
+            }*//*
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+*/
 }
