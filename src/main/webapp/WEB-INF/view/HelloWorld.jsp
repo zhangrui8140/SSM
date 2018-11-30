@@ -14,6 +14,6 @@
     <title>HelloSpringMvc</title>
 </head>
 <body>
-<h1>This is SpringMVC Demo</h1>
+<h1>${message}</h1>
 </body>
 </html>

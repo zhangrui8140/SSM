@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="business.dao.Tbl_CCKZXCSMapper">
+    <resultMap id="BaseResultMap" type="business.table.Tbl_CCKZXCS">
+        <result column="LGRPCD"  jdbcType="VARCHAR" property="lgrpcd" />
+        <result column="DPPMNM"  jdbcType="VARCHAR" property="dppmnm" />
+        <result column="DPPMDS"  jdbcType="VARCHAR" property="dppmds" />
+        <result column="DPPMVL"  jdbcType="VARCHAR" property="dppmvl" />
+        <result column="SERLNO"  jdbcType="VARCHAR" property="serlno" />
+        <result column="MTTLER"  jdbcType="VARCHAR" property="mttler" />
+        <result column="MTBRAH"  jdbcType="VARCHAR" property="mtbrah" />
+        <result column="MTDATE"  jdbcType="VARCHAR" property="mtdate" />
+        <result column="MTTIME"  jdbcType="DECIMAL" property="mttime" />
+        <result column="TMSTAM"  jdbcType="DECIMAL" property="tmstam" />
+        <result column="RECDST"  jdbcType="VARCHAR" property="recdst" />
+    </resultMap>
+
+    <!--返回类型为对象类型-->
+    <select id="select" parameterType="business.bean.CckzxcsBean" resultType="business.bean.CckzxcsBean">
+        <!-- @mbggenerated -->
+        <bind name="pattern" value="'%'+key+'%'"></bind>
+        SELECT DPPMNM AS key,DPPMDS AS desc,DPPMVL AS value
+        FROM CCKZXCS
+        WHERE DPPMNM like #{pattern}
+    </select>
+</mapper>

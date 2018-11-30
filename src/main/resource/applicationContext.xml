@@ -4,20 +4,10 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-<!--
-        <context:property-placeholder location="classpath:property/redis.properties,classpath:property/jdbc.properties" />
--->
+        <!-- 配置扫描的包 -->
+       <!-- <context:component-scan base-package="business.*" />-->
 
-        <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-                <property name="locations">
-                        <list>
-                               <value>classpath:property/jdbc.properties</value>
-                                <!--<value>classpath:property/redis.properties</value>-->
-                        </list>
-                </property>
-        </bean>
 
-        <import resource="classpath:spring-ibatis.xml" />
        <!-- <import resource="classpath:spring-mybatis.xml" />-->
-        <!--<import resource="classpath:spring-redis.xml" />-->
+
 </beans>

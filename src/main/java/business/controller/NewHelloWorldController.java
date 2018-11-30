@@ -1,0 +1,13 @@
+package business.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping({"/hello"})
+public class NewHelloWorldController {
+    @RequestMapping("/index")
+    public String index(){
+        return "HelloWorld";
+    }
+}
