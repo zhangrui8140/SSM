@@ -35,6 +35,19 @@
 
     <mvc:resources mapping="/swagger/**" location="/swagger/" />
 
+    <bean id="LoginInterceptor" class="core.interceptor.LoginInterceptor"/>
+    <bean id="BaseInterceptor" class="core.interceptor.BaseInterceptor"/>
+
+    <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">
+        <property name="interceptors">
+            <list>
+                <ref bean="LoginInterceptor"/>
+            </list>
+        </property>
+    </bean>
+
+
+
     <!-- HandlerMapping
     BeanNameUrlHandlerMapping：表示将请求的URL和Bean名字映射，
     如URL为 “上下文/hello”，
@@ -78,14 +91,14 @@
         <property name="suffix" value=".jsp"></property>
     </bean>
 
-    <bean name="/*.htm" class="org.springframework.web.servlet.mvc.UrlFilenameViewController">
+   <!-- <bean name="/*.htm" class="org.springframework.web.servlet.mvc.UrlFilenameViewController">
         <property name="prefix" value="test"/>
         <property name="suffix" value="test"/>
-    </bean>
+    </bean>-->
 
     <bean name="/hello" class="business.controller.HelloWorldController">
        <!-- <property name="requireSession" value="true"></property>-->
        <!-- <property name="synchronizeOnSession" value="true"></property>-->
-        <property name="cacheSeconds" value="60"></property>
+       <!--<property name="cacheSeconds" value="60"></property>-->
     </bean>
 </beans>
