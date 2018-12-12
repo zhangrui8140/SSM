@@ -1,6 +1,8 @@
 package business.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +13,46 @@ import java.util.Map;
 
 @Controller
 @RequestMapping(value = {"/hello"},consumes ="application/*",produces = "application/json")
+@SessionAttributes(value ={"user"})
 public class NewHelloWorldController {
+
+
+    @ModelAttribute("user")
+    public UserModel beforeLogin(HttpServletRequest request, Model model, ModelMap modelMap){
+        UserModel user=new UserModel();
+        user.setName("ZR");
+        user.setAge(23);
+        return user;
+    }
+
+
+    @RequestMapping(value = "/index5/{trcode}", method = RequestMethod.POST)
+    @ResponseBody
+    public List login(@PathVariable String trcode, @ModelAttribute("user") UserModel userModel, HttpServletRequest request, Model model, ModelMap modelMap){
+        System.out.print(userModel);
+            System.out.print(request.getSession());
+        List user=new ArrayList();
+        user.add("test");
+        return user;
+    }
+
+
+
+
+    @RequestMapping(value = "/index4/{trcode}", method = RequestMethod.POST)
+    @ResponseBody
+    public List index(@PathVariable String trcode, @RequestBody String requestJson, HttpServletRequest request, Model model, ModelMap modelMap){
+        System.out.print(requestJson);
+        System.out.print(request.getSession());
+        List user=new ArrayList();
+        user.add("test2");
+        return user;
+    }
+
+
+
+
+
     @RequestMapping(value = "/index1/{trcode}", method = RequestMethod.POST,produces = "application/xml")
     @ResponseBody
     public List index(@PathVariable String trcode,@RequestBody String requestJson,HttpServletRequest request){
@@ -33,5 +74,26 @@ public class NewHelloWorldController {
     public String index(@PathVariable String trcode,@RequestBody String requestXml){
         System.out.print(requestXml);
         return "HelloWorld";
+    }
+}
+
+class UserModel{
+    private String name;
+    private Integer age;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
     }
 }

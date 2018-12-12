@@ -1,6 +1,7 @@
 package business.controller;
 
 import core.basic.BaseController;
+import org.springframework.core.convert.support.DefaultConversionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -13,11 +14,14 @@ import javax.servlet.http.HttpServletResponse;
 
 /*@Controller
 @RequestMapping("/hello")*/
-@SessionAttributes("message")
+@SessionAttributes("user")
 public class HelloWorldController extends AbstractController {
 
     @Override
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        DefaultConversionService service=new DefaultConversionService();
+        service.convert("1",Boolean.class);
         //1、收集参数
         //2、绑定参数到命令对象
         //3、调用业务对象
