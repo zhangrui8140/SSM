@@ -1,5 +1,6 @@
 package business.controller;
 
+import core.exception.SpliterNotFoundEx;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -24,6 +25,13 @@ public class NewHelloWorldController {
         user.setAge(23);
         return user;
     }
+
+    @RequestMapping(value = "/index6", method = RequestMethod.GET)
+    @ResponseBody
+    public List login(HttpServletRequest request, Model model, ModelMap modelMap){
+        throw new SpliterNotFoundEx();
+    }
+
 
 
     @RequestMapping(value = "/index5/{trcode}", method = RequestMethod.POST)
