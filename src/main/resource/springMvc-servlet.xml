@@ -36,7 +36,6 @@
     <mvc:resources mapping="/swagger/**" location="/swagger/" />
 
     <bean id="LoginInterceptor" class="core.interceptor.LoginInterceptor"/>
-    <bean id="BaseInterceptor" class="core.interceptor.BaseInterceptor"/>
 
     <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">
         <property name="interceptors">

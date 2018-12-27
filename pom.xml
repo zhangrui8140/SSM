@@ -209,7 +209,7 @@
 
 
     <!--Swagger RestFul Start-->
-    <dependency>
+   <!-- <dependency>
       <groupId>io.springfox</groupId>
       <artifactId>springfox-swagger2</artifactId>
       <version>${swagger.version}</version>
@@ -234,7 +234,7 @@
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-core</artifactId>
       <version>${jackson.version}</version>
-    </dependency>
+    </dependency>-->
     <!--Swagger RestFul End-->
 
 
