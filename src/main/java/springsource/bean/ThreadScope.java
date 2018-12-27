@@ -1,4 +1,4 @@
-package springsource;
+package springsource.bean;
 
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.ObjectFactory;
@@ -13,7 +13,7 @@ public class ThreadScope implements Scope {
 
     private final ThreadLocal<Map<String,Object>> THREAD_SCOPE=
             new ThreadLocal<Map<String,Object>>(){
-        protected Map<String,Object> initValue(){
+        protected Map<String,Object> initialValue(){
             return new HashMap<>();
         }
     };

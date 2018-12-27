@@ -8,7 +8,7 @@
         <property name="scopes">
             <map><entry>
                <key><value>thread</value></key><!-- 指定scope关键字 -->
-               <bean class="springsource.ThreadScope"/>
+               <bean class="springsource.bean.ThreadScope"/>
             </entry></map>
         </property>
     </bean>
