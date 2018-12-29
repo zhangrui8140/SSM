@@ -1,15 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="springsource.*" />
 
     <!--自定义作用域-->
-    <bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
+   <!-- <bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
         <property name="scopes">
             <map><entry>
-               <key><value>thread</value></key><!-- 指定scope关键字 -->
+               <key><value>thread</value></key>&lt;!&ndash; 指定scope关键字 &ndash;&gt;
                <bean class="springsource.bean.ThreadScope"/>
             </entry></map>
         </property>
+    </bean>-->
+    <!--******************************************************************-->
+    <!--aop JDK动态代理-->
+    <!--<aop:config proxy-target-class="true"/>-->
+    <!--@AspectJ CGLIB代理-->
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+   <!-- <aop:config>
+        <aop:pointcut id="servicePointcut" expression="execution(* business.service..*.*(..))"/>
+        <aop:aspect ref="baseAspect">
+            <aop:around method="controllerBeforeAdvice" pointcut-ref="servicePointcut"></aop:around>
+        </aop:aspect>
+    </aop:config>
+    <bean id="baseAspect" class="springsource.aop.BaseAspect"></bean>-->
+    <!--******************************************************************-->
+   <!--JDBC-->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource">
+            <ref bean="dataSource" />
+        </property>
     </bean>
+    <bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+         <constructor-arg ref="jdbcTemplate"></constructor-arg>
+    </bean>
+
+    <bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+        <constructor-arg ref="jdbcTemplate"></constructor-arg>
+    </bean>
+    <!--******************************************************************-->
 </beans>

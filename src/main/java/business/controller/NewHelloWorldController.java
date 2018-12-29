@@ -1,6 +1,9 @@
 package business.controller;
 
+import business.service.HelloWorldService;
+import business.service.IHelloWorldService;
 import core.exception.SpliterNotFoundEx;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -13,10 +16,12 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping(value = {"/hello"},consumes ="application/*",produces = "application/json")
+@RequestMapping(value = {"/hello"},produces = "application/json")
 @SessionAttributes(value ={"user"})
 public class NewHelloWorldController {
 
+    @Autowired
+    private IHelloWorldService helloWorldService;
 
     @ModelAttribute("user")
     public UserModel beforeLogin(HttpServletRequest request, Model model, ModelMap modelMap){
@@ -37,8 +42,7 @@ public class NewHelloWorldController {
     @RequestMapping(value = "/index5/{trcode}", method = RequestMethod.POST)
     @ResponseBody
     public List login(@PathVariable String trcode, @ModelAttribute("user") UserModel userModel, HttpServletRequest request, Model model, ModelMap modelMap){
-        System.out.print(userModel);
-            System.out.print(request.getSession());
+        helloWorldService.testAspect();
         List user=new ArrayList();
         user.add("test");
         return user;
